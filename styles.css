@@ -1,0 +1,60 @@
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: 'Poppins', sans-serif;
+}
+
+img {
+  width: 128px;
+  height: 128px;
+}
+
+// Estilizando o título pela classe
+.titulo {
+  font-size: 24px;
+  font-weight: bold;
+  color: #29292E;
+}
+
+hr {
+  width: 105px;
+  height: 2px;
+  background-color: #E559F9;
+  border: none;
+}
+
+#formulario {
+  display: flex;
+  flex-direction: column;
+  margin-top: 80px;
+}
+
+label {
+  font-size: 16px;
+  font-weight: bold;
+  color: #29292E;
+}
+
+input {
+  width: 320px;
+  border-radius: 8px;
+  border: 1px solid #A8A8B3;
+  padding: 15px 16px 15px 16px;
+
+  font-size: 16px;
+  font-weight: regular;
+  color: #A8A8B3;
+  margin-top: 8px;
+}
+
+button {
+  background-color: #184680;
+  color: #ffffff;
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  margin-top: 16px;
+}
