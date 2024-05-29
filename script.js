@@ -26,18 +26,27 @@ function buscarCep(event) {
     });
 }
 
+// Adicionando um evento de SUBMIT (ENVIO) no formulário
+formulario.addEventListener("submit", buscarCep);
+
+
 // Função responsável por adicionar a máscara no CEP
 function mascaraCep(event) {
   event.currentTarget.maxLength = 9
-  let value = event.currentTarget.value
+
+  console.log('EVENT', event)
+  console.log('Current Target', event.currentTarget)
+
+
+  var value = event.currentTarget.value
+  
   value = value.replace(/\D/g, '')
   value = value.replace(/^(\d{5})(\d)/, '$1-$2')
+  
   event.currentTarget.value = value
-  return e
+
+  return event
 }
 
 // Adicionando um evento de INPUT (DIGITAÇÃO) no campo de CEP
 cep.addEventListener("keyup", mascaraCep);
-
-// Adicionando um evento de SUBMIT (ENVIO) no formulário
-formulario.addEventListener("submit", buscarCep);
