@@ -1,6 +1,9 @@
 // Pegando os elementos do HTML pelo ID
 var formulario = document.getElementById("formulario");
 var cep = document.getElementById("cep");
+var tbody = document.getElementById("tbody");
+
+var listaDeCeps = [];
 
 // Função responsável por buscar o CEP
 function buscarCep(event) {
@@ -10,19 +13,41 @@ function buscarCep(event) {
   // Pegando o valor do INPUT DE CEP
   var valorDoCep = cep.value;
 
-  console.log(valorDoCep);
-
   // Fazendo uma requisição para a API VIA CEP
   fetch(`https://viacep.com.br/ws/${valorDoCep}/json/`)
     .then((response) => response.json())
     .then((data) => {
       console.log(data);
 
+      // Adicionando o CEP na lista de CEPs
+      listaDeCeps.push(data)
+
+      var novaLinha = tbody.insertRow();
+
+      var celulaCep = novaLinha.insertCell(0);
+      var celulaLogradouro = novaLinha.insertCell(1);
+      var celulaBairro = novaLinha.insertCell(2);
+      var celulaLocalidade = novaLinha.insertCell(3);
+      var celulaUf = novaLinha.insertCell(4);
+
+      console.log('teste', listaDeCeps.reverse())
+      listaDeCeps.reverse().forEach(item => {
+
+        celulaCep.innerText = item.cep;
+        celulaLogradouro.innerText = item.logradouro || "Não informado";
+        celulaBairro.innerText = item.bairro || "Não informado";
+        celulaLocalidade.innerText = item.localidade;
+        celulaUf.innerText = item.uf;
+
+
+      })
+
+
       // Pegando o elemento do HTML pelo ID
-      var resultado = document.getElementById("resultado");
+      // var resultado = document.getElementById("resultado");
 
       // Adicionando o conteúdo no HTML
-      resultado.innerText = `CEP: ${data.cep} - ${data.logradouro}, ${data.bairro}, ${data.localidade} - ${data.uf}`;
+      // resultado.innerText = `CEP: ${data.cep} - ${data.logradouro}, ${data.bairro}, ${data.localidade} - ${data.uf}`;
     });
 }
 
@@ -33,10 +58,6 @@ formulario.addEventListener("submit", buscarCep);
 // Função responsável por adicionar a máscara no CEP
 function mascaraCep(event) {
   event.currentTarget.maxLength = 9
-
-  console.log('EVENT', event)
-  console.log('Current Target', event.currentTarget)
-
 
   var value = event.currentTarget.value
   
